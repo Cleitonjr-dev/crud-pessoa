@@ -10,13 +10,15 @@ import { ListarPessoaComponent } from './listar-pessoa/listar-pessoa.component';
 
 import { ButtonModule } from 'primeng/button';
 import { InserirPessoaComponent } from './inserir-pessoa/inserir-pessoa.component';
+import { EditarPessoaComponent } from './editar-pessoa/editar-pessoa.component';
    
 
 
 @NgModule({
   declarations: [
     ListarPessoaComponent,
-    InserirPessoaComponent
+    InserirPessoaComponent,
+    EditarPessoaComponent
   ],
   imports: [
     CommonModule,
