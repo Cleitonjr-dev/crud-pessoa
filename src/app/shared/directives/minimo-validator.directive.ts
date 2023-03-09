@@ -26,5 +26,5 @@ export class MinimoValidatorDirective implements Validator, OnInit {
     }
     return null
   }
-
+   
 }
