@@ -6,6 +6,7 @@
     <tr>
       <th>Nome</th>
       <th>Idade</th>
+      <th>Data de Nascimento</th>
       <th class="text-center">
         <a [routerLink]="['/pessoas/novo']"
           href="#" title="Novo" alt="Novo" class="btn btn-success">
@@ -16,12 +17,14 @@
     <tr *ngFor="let pessoa of pessoas">
       <td>{{ pessoa.nome }}</td>
       <td>{{ pessoa.idade }}</td>
+      <td>{{ pessoa.nascimento }}</td>
       <td class="text-center" style="width: 300px">
         <a [routerLink]="['/pessoas/editar', pessoa.id]"
           href="#" title="Editar" alt="Editar" class="btn btn-xs btn-info">
           <i class="bi bi-pencil-fill" aria-hidden="true"></i> Editar
         </a>
-        <a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger">
+        <a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger"
+           (click)="remover($event, pessoa)">
           <i class="bi bi-trash3" aria-hidden="true"></i> Remover
         </a>
       </td>
