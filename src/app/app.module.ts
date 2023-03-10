@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from './shared';
+
 
 
 
@@ -15,12 +17,14 @@ import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
     AppComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PessoaModule,
     FontAwesomeModule,
+    SharedModule
 
 
 

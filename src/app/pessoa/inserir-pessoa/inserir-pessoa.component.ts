@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PessoaService } from '../services/pessoa.service';
-import { Pessoa } from 'src/app/shared/models/pessoa.model';
+import { Pessoa } from 'src/app/shared';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
