@@ -7,5 +7,7 @@ criar, visualizar, editar e deletar.
 
 Projeto CRUD-Cadastro de pessoas faz o uso de diretivas, rotas, pipes, mascara de campos, Bootstrap, PrimeNg, Ngx Mask.
 
+podem acessar diretamente por esse link: https://crud-cadastrodepessoas.netlify.app/pessoas/listas
+
 ![image](https://user-images.githubusercontent.com/104870722/224358257-03ed572e-4753-4da3-94f2-5f27f1531aa3.png)
 
