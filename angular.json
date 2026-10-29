@@ -15,7 +15,7 @@
             "outputPath": "dist/crud-pessoa",
             "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", { "glob": "_redirects", "input": "src" }],
             "styles": ["src/styles.css"],
             "browser": "src/main.ts"
           },
@@ -77,5 +77,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "d45e2955-9d21-4454-82dd-8a577add4bca"
   }
 }

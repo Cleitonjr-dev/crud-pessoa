@@ -72,4 +72,4 @@ src/app/
 - **Lista em cartões:** em vez de tabela, cada pessoa é um cartão, o que funciona em telas de 320 px sem rolagem horizontal.
 - **Um formulário só:** cadastro e edição usam o mesmo componente.
 - **Acessibilidade:** campos com rótulo, mensagens ligadas ao campo (`aria-describedby`), janelas nativas `<dialog>` (foco e Esc tratados pelo navegador), botões de ação com nome acessível e alvos de toque de 44 px.
-- **Deploy:** o `netlify.toml` redireciona qualquer rota para o `index.html`, para que recarregar a página em `/pessoas/novo` não dê 404.
+- **Deploy:** o `netlify.toml` e o arquivo `_redirects` (copiado para o build) redirecionam qualquer rota para o `index.html`, para que recarregar a página em `/pessoas/novo` não dê 404.
