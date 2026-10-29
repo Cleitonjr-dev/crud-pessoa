@@ -1,0 +1,107 @@
+<div class="flex flex-wrap items-center justify-between gap-3">
+  <h1 class="text-2xl font-bold">Pessoas</h1>
+  <a
+    routerLink="/pessoas/novo"
+    class="flex min-h-11 items-center rounded-[10px] bg-primary px-5 font-medium text-white no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+  >
+    Nova pessoa
+  </a>
+</div>
+
+@if (store.error(); as error) {
+  <p role="alert" class="mt-4 rounded-[10px] border border-red-700 bg-white p-3 text-red-700">
+    {{ error }}
+  </p>
+}
+
+@if (store.pessoas().length) {
+  <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    @for (pessoa of store.pessoas(); track pessoa.id) {
+      <li class="flex flex-col gap-3 rounded-[10px] bg-white p-4 shadow-sm">
+        <div>
+          <p class="font-bold break-words uppercase">{{ pessoa.nome }}</p>
+          <p class="mt-1 text-sm">Idade: {{ pessoa.idade }}</p>
+          <p class="text-sm">Nascimento: {{ formatDate(pessoa.dataNascimento) }}</p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button
+            type="button"
+            (click)="viewing.set(pessoa)"
+            [attr.aria-label]="'Ver ' + pessoa.nome"
+            class="min-h-11 cursor-pointer rounded-[10px] border border-primary px-4 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+          >
+            Ver
+          </button>
+          <a
+            [routerLink]="['/pessoas/editar', pessoa.id]"
+            [attr.aria-label]="'Editar ' + pessoa.nome"
+            class="flex min-h-11 items-center rounded-[10px] border border-primary px-4 text-sm font-medium text-primary no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+          >
+            Editar
+          </a>
+          <button
+            type="button"
+            (click)="removing.set(pessoa)"
+            [attr.aria-label]="'Remover ' + pessoa.nome"
+            class="min-h-11 cursor-pointer rounded-[10px] bg-red-700 px-4 text-sm font-medium text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+          >
+            Remover
+          </button>
+        </div>
+      </li>
+    }
+  </ul>
+} @else {
+  <p class="mt-6">Nenhuma pessoa cadastrada.</p>
+}
+
+@if (viewing(); as pessoa) {
+  <app-dialog #viewDialog heading="Pessoa" (closed)="viewing.set(null)">
+    <dl class="flex flex-col gap-2">
+      <div>
+        <dt class="text-sm text-primary/70">Nome</dt>
+        <dd class="break-words">{{ pessoa.nome }}</dd>
+      </div>
+      <div>
+        <dt class="text-sm text-primary/70">Idade</dt>
+        <dd>{{ pessoa.idade }}</dd>
+      </div>
+      <div>
+        <dt class="text-sm text-primary/70">Data de nascimento</dt>
+        <dd>{{ formatDate(pessoa.dataNascimento) }}</dd>
+      </div>
+    </dl>
+    <div class="mt-5 flex justify-end">
+      <button
+        type="button"
+        (click)="viewDialog.close()"
+        class="min-h-11 cursor-pointer rounded-[10px] bg-primary px-5 font-medium text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+      >
+        Fechar
+      </button>
+    </div>
+  </app-dialog>
+}
+
+@if (removing(); as pessoa) {
+  <app-dialog #removeDialog heading="Remover pessoa" (closed)="removing.set(null)">
+    <p class="break-words">Deseja realmente remover a pessoa {{ pessoa.nome }}?</p>
+    <div class="mt-5 flex flex-wrap justify-end gap-2">
+      <button
+        type="button"
+        (click)="removeDialog.close()"
+        class="min-h-11 cursor-pointer rounded-[10px] border border-primary px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+      >
+        Cancelar
+      </button>
+      <button
+        type="button"
+        (click)="confirmRemove(pessoa, removeDialog)"
+        class="min-h-11 cursor-pointer rounded-[10px] bg-red-700 px-5 font-medium text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+      >
+        Remover
+      </button>
+    </div>
+  </app-dialog>
+}

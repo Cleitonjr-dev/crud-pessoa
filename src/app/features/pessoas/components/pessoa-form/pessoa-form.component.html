@@ -1,0 +1,70 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate class="flex flex-col gap-5">
+  <div>
+    <label for="nome" class="block font-medium">Nome</label>
+    <input
+      id="nome"
+      type="text"
+      formControlName="nome"
+      autocomplete="off"
+      [attr.aria-invalid]="errorOf('nome') ? true : null"
+      [attr.aria-describedby]="errorOf('nome') ? 'nome-erro' : null"
+      class="mt-1 min-h-11 w-full rounded-[10px] border border-primary/40 bg-white px-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary aria-invalid:border-red-700"
+    />
+    @if (errorOf('nome'); as message) {
+      <p id="nome-erro" class="mt-1 text-sm text-red-700">{{ message }}</p>
+    }
+  </div>
+
+  <div>
+    <label for="dataNascimento" class="block font-medium">Data de nascimento</label>
+    <input
+      id="dataNascimento"
+      type="text"
+      inputmode="numeric"
+      autocomplete="off"
+      placeholder="dd/mm/aaaa"
+      formControlName="dataNascimento"
+      (input)="maskBirthDate($event)"
+      [attr.aria-invalid]="errorOf('dataNascimento') ? true : null"
+      [attr.aria-describedby]="errorOf('dataNascimento') ? 'dataNascimento-erro' : null"
+      class="mt-1 min-h-11 w-full rounded-[10px] border border-primary/40 bg-white px-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary aria-invalid:border-red-700"
+    />
+    @if (errorOf('dataNascimento'); as message) {
+      <p id="dataNascimento-erro" class="mt-1 text-sm text-red-700">{{ message }}</p>
+    }
+  </div>
+
+  <div>
+    <label for="idade" class="block font-medium">Idade</label>
+    <input
+      id="idade"
+      type="number"
+      inputmode="numeric"
+      autocomplete="off"
+      [min]="idadeMinima"
+      step="1"
+      formControlName="idade"
+      [attr.aria-invalid]="errorOf('idade') ? true : null"
+      [attr.aria-describedby]="errorOf('idade') ? 'idade-erro' : null"
+      class="mt-1 min-h-11 w-full rounded-[10px] border border-primary/40 bg-white px-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary aria-invalid:border-red-700"
+    />
+    @if (errorOf('idade'); as message) {
+      <p id="idade-erro" class="mt-1 text-sm text-red-700">{{ message }}</p>
+    }
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <button
+      type="submit"
+      class="min-h-11 cursor-pointer rounded-[10px] bg-primary px-5 font-medium text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+    >
+      {{ submitLabel() }}
+    </button>
+    <a
+      routerLink="/pessoas/listas"
+      class="flex min-h-11 items-center rounded-[10px] border border-primary px-5 font-medium text-primary no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+    >
+      Voltar
+    </a>
+  </div>
+</form>

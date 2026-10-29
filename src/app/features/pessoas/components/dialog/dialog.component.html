@@ -1,0 +1,16 @@
+<!-- O clique no fundo é só um atalho de mouse; o teclado fecha com Esc (nativo do <dialog>). -->
+<!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
+<dialog
+  #dialog
+  aria-labelledby="dialog-title"
+  (close)="closed.emit()"
+  (click)="closeOnBackdrop($event)"
+  class="m-auto w-[calc(100%-2rem)] max-w-md rounded-[10px] bg-white p-0 text-primary shadow-2xl backdrop:bg-black/60"
+>
+  <div class="p-5">
+    <h2 id="dialog-title" class="text-xl font-bold">{{ heading() }}</h2>
+    <div class="mt-3">
+      <ng-content />
+    </div>
+  </div>
+</dialog>

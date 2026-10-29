@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist/crud-pessoa/browser"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Aplicação de página única: qualquer rota (ex.: /pessoas/novo) abre o index.html,
+# para que recarregar a página ou abrir um link direto não dê 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
